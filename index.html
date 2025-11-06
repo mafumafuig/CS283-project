@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bookworm EGY — Home</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+
+   <header class="header" role="banner">
+    <div class="brand">
+      <div class="logo">AAT</div>
+      <div>
+        <div style="font-weight:800">aboattef</div>
+        <div class="small">For Online Bookstore</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">About Bookworm</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Used Books</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <button class="btn ghost" id="loginBtn">Log In</button>
+      <button class="btn" id="cartBtn">(<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+  
+ <main>
+    <section class="hero container" aria-labelledby="heroTitle">
+      <div class="hero-card">
+        <h1 id="heroTitle">HAPPY READING!</h1>
+        <p>اختَر من أحدث الكتب الجديدة والمستعملة — توصيل داخل مصر. تصفح الآن أشيائنا المميزة.</p>
+        <div class="hero-cta">
+          <button class="btn" onclick="scrollToSection('newBooks')">تصفح الكتب الجديدة</button>
+          <button class="btn ghost" onclick="scrollToSection('usedBooks')">الكتب المستعملة</button>
+        </div>
+
+        <hr style="margin:18px 0;border:0;border-top:1px solid rgba(0,0,0,0.04)">
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="https://www.shutterstock.com/image-vector/cute-caterpillar-bookworm-worm-cartoon-600nw-2226789795.jpg" alt="Bookworm logo" style="width:56px;height:56px;object-fit:contain">
+          <div>
+            <div style="font-weight:700">تابعنا</div>
+            <div class="small">Facebook · Instagram · TikTok</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-image" role="img" aria-label="Open books hero"></div>
+      </div>
+    </section>
+
+    <!-- New Books -->
+    <section class="container" id="newBooks" aria-labelledby="newTitle">
+      <div class="section-title">
+        <h2 id="newTitle">NEW BOOKS</h2>
+        <div class="small">Quick View · Add to Cart</div>
+      </div>
+
+      <div class="grid" id="newGrid">
+        <!-- Card templates inserted by JS -->
+      </div>
+      <div style="text-align:center;margin-top:12px">
+        <button class="btn ghost" onclick="loadMore('new')">Load More</button>
+      </div>
+    </section>
+
+    <!-- Used Books -->
+    <section class="container" id="usedBooks" aria-labelledby="usedTitle" style="margin-top:26px">
+      <div class="section-title">
+        <h2 id="usedTitle">USED BOOKS</h2>
+        <div class="small">تشكيلة مختارة من الكتب المستعملة</div>
+      </div>
+
+      <div class="grid" id="usedGrid">
+        <!-- inserted by JS -->
+      </div>
+      <div style="text-align:center;margin-top:12px">
+        <button class="btn ghost" onclick="loadMore('used')">Load More</button>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <div>© 2024 by Bookworm EGY — Email: <a href="mailto:Bookwormegy2020@gmail.com">Bookwormegy2020@gmail.com</a></div>
+    <div class="socials">
+      <a href="#" aria-label="facebook">Facebook</a>
+      <a href="#" aria-label="instagram">Instagram</a>
+      <a href="#" aria-label="tiktok">TikTok</a>
+    </div>
+  </footer>
+
+  
+</body>
+</html>
