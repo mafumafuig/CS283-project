@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتصل بنا - Bookworm Egypt</title>
+  <link rel="stylesheet" href="contact.css">
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  document.getElementById('nameError').style.display = 'none';
+  document.getElementById('emailError').style.display = 'none';
+  document.getElementById('messageError').style.display = 'none';
+  document.getElementById('formSuccess').textContent = '';
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  let valid = true;
+
+
+  if (name.length < 3) {
+    document.getElementById('nameError').textContent = 'الاسم يجب أن يكون 3 أحرف على الأقل';
+    document.getElementById('nameError').style.display = 'block';
+    valid = false;
+  }
+
+ 
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    document.getElementById('emailError').textContent = 'من فضلك أدخل بريدًا إلكترونيًا صالحًا';
+    document.getElementById('emailError').style.display = 'block';
+    valid = false;
+  } 
+  if (message.length < 10) {
+    document.getElementById('messageError').textContent = 'يرجى كتابة رسالة لا تقل عن 10 أحرف';
+    document.getElementById('messageError').style.display = 'block';
+    valid = false;
+  }
+  if (valid) {
+    document.getElementById('formSuccess').textContent = 'تم إرسال رسالتك بنجاح! شكرًا لتواصلك معنا.'
+   
+  }
+});
+  </script>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contact-container {
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.contact-container h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.contact-container p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  display: none;
+}
+
+.success-message {
+  color: green;
+  font-size: 1em;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h1>تواصل معنا</h1>
+    <p>يسعدنا دائمًا سماع رأيك أو استفساراتك. املأ النموذج أدناه وسنعود إليك في أقرب وقت.</p>
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="name">الاسم</label>
+        <input type="text" id="name" name="name" placeholder="اسمك" required>
+        <span class="error" id="nameError"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+        <span class="error" id="emailError"></span>
+      </div>
+      <div class="form-group">
+        <label for="message">الرسالة</label>
+        <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا ..." required></textarea>
+        <span class="error" id="messageError"></span>
+      </div>
+      <button type="submit" class="btn">إرسال</button>
+      <div id="formSuccess" class="success-message"></div>
+    </form>
+  </div>
+
+  <script src="contact.js"></script>
+</body>
+</html>
