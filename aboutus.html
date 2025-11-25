@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن - Bookworm</title>
+  <link rel="stylesheet" href="about.css">
+  <style>
+   body 
+   {
+  font-family: "Tajawal", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.about-section {
+  padding: 50px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  color: #333;
+  font-size: 32px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #777;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.text h2 {
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.text p {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.image-box {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 700px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <section class="about-section">
+    <div class="container">
+
+      <h1>من نحن</h1>
+      <p class="subtitle">تعرف على قصة aboattefBookstore ورحلتنا مع الكتب</p>
+
+      <div class="content">
+
+        <div class="text">
+          <h2>قصتنا</h2>
+          <p>
+            aboattefBookstore  هو متجر كتب إلكتروني يهدف إلى توفير تجربة قراءة مختلفة وممتعة. 
+            بدأنا بهدف بسيط: جعل الكتاب في متناول الجميع بسهولة، وبأفضل جودة وسعر.
+          </p>
+
+          <h2>مهمتنا</h2>
+          <p>
+            نعمل على تقديم مكتبة متنوعة تشمل الكتب العلمية، الأدبية، التعليمية، والروايات العالمية،
+            لنساعد كل قارئ في العثور على كتابه المثالي.
+          </p>
+
+          <h2>رؤيتنا</h2>
+          <p>
+            نؤمن أن القراءة هي مفتاح المعرفة وتطوير الذات. نسعى إلى بناء مجتمع قارئ، 
+            يقدم ويشارك المعرفة بطريقة سلسة واحترافية.
+          </p>
+
+        </div>
+
+        <div class="image-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD_T413MQPw7w8jkPTeD_uhgjmuuFqqnhohA&s" alt="About bookworm">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
