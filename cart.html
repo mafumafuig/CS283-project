@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سلة الشراء</title>
+  <link rel="stylesheet" href="cart.css">
+  <script>
+   
+let cart = [
+  { id: 1, name: "كتاب تجريبي", price: 200, qty: 2 },
+  { id: 2, name: "رواية جميلة", price: 150, qty: 1 }
+];
+
+function renderCart() {
+  const tbody = document.getElementById("cart-body");
+  tbody.innerHTML = ""; 
+
+  let total = 0;
+  cart.forEach((item, idx) => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.price}</td>
+      <td><input type="number" min="1" value="${item.qty}" data-index="${idx}" class="qty-input"></td>
+      <td class="subtotal">${subtotal}</td>
+      <td><button class="remove-btn" data-index="${idx}">× حذف</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById("total").innerText = total;
+  attachEvents();
+}
+
+function attachEvents() {
+  document.querySelectorAll(".qty-input").forEach(input => {
+    input.addEventListener("change", (e) => {
+      const idx = e.target.getAttribute("data-index");
+      const newQty = parseInt(e.target.value);
+      if (newQty >= 1) {
+        cart[idx].qty = newQty;
+        renderCart();
+      }
+    });
+  });
+
+  document.querySelectorAll(".remove-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const idx = e.target.getAttribute("data-index");
+      cart.splice(idx, 1);
+      renderCart();
+    });
+  });
+
+  document.getElementById("clear-cart").addEventListener("click", () => {
+    cart = [];
+    renderCart();
+  });
+}
+
+
+renderCart();
+  </script>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f5f5f5;
+  direction: rtl;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+#cart-summary p {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+button {
+  padding: 8px 12px;
+  background: #d9534f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c9302c;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>سلة المشتريات</h1>
+    <a href="shop.html">← العودة للمتجر</a>
+  </header>
+
+  <main>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>المنتج</th>
+          <th>السعر</th>
+          <th>الكمية</th>
+          <th>المجموع</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+      <tbody id="cart-body">
+       
+      </tbody>
+    </table>
+
+    <div id="cart-summary">
+      <p>الإجمالي: <span id="total">0</span> جنيه</p>
+      <button id="clear-cart">إفراغ السلة</button>
+    </div>
+  </main>
+
+  <script src="cart.js"></script>
+</body>
+</html>
