@@ -5,44 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>اتصل بنا - Bookworm Egypt</title>
   <link rel="stylesheet" href="contact.css">
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  document.getElementById('nameError').style.display = 'none';
-  document.getElementById('emailError').style.display = 'none';
-  document.getElementById('messageError').style.display = 'none';
-  document.getElementById('formSuccess').textContent = '';
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-
-  let valid = true;
-
-
-  if (name.length < 3) {
-    document.getElementById('nameError').textContent = 'الاسم يجب أن يكون 3 أحرف على الأقل';
-    document.getElementById('nameError').style.display = 'block';
-    valid = false;
-  }
-
- 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(email)) {
-    document.getElementById('emailError').textContent = 'من فضلك أدخل بريدًا إلكترونيًا صالحًا';
-    document.getElementById('emailError').style.display = 'block';
-    valid = false;
-  } 
-  if (message.length < 10) {
-    document.getElementById('messageError').textContent = 'يرجى كتابة رسالة لا تقل عن 10 أحرف';
-    document.getElementById('messageError').style.display = 'block';
-    valid = false;
-  }
-  if (valid) {
-    document.getElementById('formSuccess').textContent = 'تم إرسال رسالتك بنجاح! شكرًا لتواصلك معنا.'
-   
-  }
-});
-  </script>
+  
   <style>
     body {
   font-family: Arial, sans-serif;
@@ -95,6 +58,11 @@
   box-sizing: border-box;
 }
 
+.form-group textarea {
+  max-width:100%;  
+  max-height:200px ;
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #007bff;
@@ -118,7 +86,7 @@
   width: 100%;
   padding: 12px;
   background-color: #007bff;
-  border: none;
+  border:none;
   color: white;
   font-size: 16px;
   border-radius: 4px;
@@ -154,7 +122,44 @@
       <div id="formSuccess" class="success-message"></div>
     </form>
   </div>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  document.getElementById('nameError').style.display = 'none';
+  document.getElementById('emailError').style.display = 'none';
+  document.getElementById('messageError').style.display = 'none';
+  document.getElementById('formSuccess').textContent = '';
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
 
+  let valid = true;
+
+
+  if (name.length < 3) {
+    document.getElementById('nameError').textContent = 'الاسم يجب أن يكون 3 أحرف على الأقل';
+    document.getElementById('nameError').style.display = 'block';
+    valid = false;
+  }
+
+ 
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    document.getElementById('emailError').textContent = 'من فضلك أدخل بريدًا إلكترونيًا صالحًا';
+    document.getElementById('emailError').style.display = 'block';
+    valid = false;
+  } 
+  if (message.length < 10) {
+    document.getElementById('messageError').textContent = 'يرجى كتابة رسالة لا تقل عن 10 أحرف';
+    document.getElementById('messageError').style.display = 'block';
+    valid = false;
+  }
+  if (valid) {
+    document.getElementById('formSuccess').textContent = 'تم إرسال رسالتك بنجاح! شكرًا لتواصلك معنا.'
+   
+  }
+});
+  </script>
   <script src="contact.js"></script>
 </body>
 </html>
