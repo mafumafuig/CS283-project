@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help and Support - Bookworm Egypt</title>
-  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="style.css">
   
   <style>
     body {
@@ -96,9 +96,38 @@
 .btn:hover {
   background-color: #0056b3;
 }
+
+.header {
+  top:0; 
+  position:sticky;
+}
   </style>
 </head>
 <body>
+  <header class="header" role="banner">
+    <div class="brand">
+      <div class="logo">AAT</div>
+      <div>
+        <div style="font-weight:800">aboattef</div>
+        <div class="small">For Online Bookstore</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="./index.html" >Home</a></li>
+        <li><a href="./aboutus.html">About Bookworm</a></li>
+        <li><a href="./bookstore.html">Shop</a></li>
+        <li><a href="#">Used Books</a></li>
+        <li><a href="#"aria-current="page">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <button class="btn ghost" id="loginBtn">Log In</button>
+      <button class="btn" id="cartBtn">(<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
   <div class="contact-container">
     <h1>Contact Us</h1>
     <p>We’d love to hear from you! If you have any inquiry about anything, feel free to reach us. Our team is always ready to help you.</p>
@@ -155,6 +184,10 @@
     valid = false;
   }
   if (valid) {
+    const formdata = new FormData();   formdata.append("name" , name);
+    formdata.append("message", message);
+    formdata.append("email", email);
+    fetch("./ContactUs.php",{method:"POST",body:formdata});
     document.getElementById('formSuccess').textContent = 'Your message has been sent successfully!'
    
   }

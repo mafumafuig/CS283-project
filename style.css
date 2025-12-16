@@ -20,9 +20,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
+  padding-top: 84px; 
 }
 
-/* HEADER */
+
 .header {
   display: flex;
   align-items: center;
@@ -31,9 +32,11 @@ body {
   padding: 18px 24px;
   background: var(--card);
   box-shadow: 0 6px 18px rgba(15, 15, 15, 0.05);
-  position: sticky;
+  position: fixed; 
   top: 0;
-  z-index: 40;
+  left: 0;
+  right: 0;
+  z-index: 9999;
 }
 
 .brand {
@@ -82,7 +85,6 @@ nav a:hover {
   align-items: center;
 }
 
-/* HERO SECTION */
 .hero {
   display: grid;
   grid-template-columns: 1fr 420px;
