@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سلة الشراء</title>
+  <title>Your bag</title>
   <link rel="stylesheet" href="cart.css">
   <script>
    
 let cart = [
-  { id: 1, name: "كتاب تجريبي", price: 200, qty: 2 },
-  { id: 2, name: "رواية جميلة", price: 150, qty: 1 }
+  { id: 1, name: "experimental book", price: 200, qty: 2 },
+  { id: 2, name: "exiting novel", price: 150, qty: 1 }
 ];
 
 function renderCart() {
@@ -27,7 +27,7 @@ function renderCart() {
       <td>${item.price}</td>
       <td><input type="number" min="1" value="${item.qty}" data-index="${idx}" class="qty-input"></td>
       <td class="subtotal">${subtotal}</td>
-      <td><button class="remove-btn" data-index="${idx}">× حذف</button></td>
+      <td><button class="remove-btn" data-index="${idx}">× delete</button></td>
     `;
     tbody.appendChild(tr);
   });
@@ -117,19 +117,19 @@ button:hover {
 </head>
 <body>
   <header>
-    <h1>سلة المشتريات</h1>
-    <a href="shop.html">← العودة للمتجر</a>
+    <h1>Your bag</h1>
+    <a href="shop.html">← Back to store</a>
   </header>
 
   <main>
     <table id="cart-table">
       <thead>
         <tr>
-          <th>المنتج</th>
-          <th>السعر</th>
-          <th>الكمية</th>
-          <th>المجموع</th>
-          <th>حذف</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody id="cart-body">
@@ -138,8 +138,8 @@ button:hover {
     </table>
 
     <div id="cart-summary">
-      <p>الإجمالي: <span id="total">0</span> جنيه</p>
-      <button id="clear-cart">إفراغ السلة</button>
+      <p>Total price: <span id="total">0</span> pound</p>
+      <button id="clear-cart">empty bag</button>
     </div>
   </main>
 
