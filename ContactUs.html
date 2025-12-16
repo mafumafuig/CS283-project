@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اتصل بنا - Bookworm Egypt</title>
+  <title>Help and Support - Bookworm Egypt</title>
   <link rel="stylesheet" href="contact.css">
   
   <style>
@@ -100,25 +100,25 @@
 </head>
 <body>
   <div class="contact-container">
-    <h1>تواصل معنا</h1>
-    <p>يسعدنا دائمًا سماع رأيك أو استفساراتك. املأ النموذج أدناه وسنعود إليك في أقرب وقت.</p>
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! If you have any inquiry about anything, feel free to reach us. Our team is always ready to help you.</p>
     <form id="contactForm" novalidate>
       <div class="form-group">
-        <label for="name">الاسم</label>
-        <input type="text" id="name" name="name" placeholder="اسمك" required>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter username" required>
         <span class="error" id="nameError"></span>
       </div>
       <div class="form-group">
-        <label for="email">البريد الإلكتروني</label>
+        <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="example@domain.com" required>
         <span class="error" id="emailError"></span>
       </div>
       <div class="form-group">
-        <label for="message">الرسالة</label>
-        <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا ..." required></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="write your message here" required></textarea>
         <span class="error" id="messageError"></span>
       </div>
-      <button type="submit" class="btn">إرسال</button>
+      <button type="submit" class="btn">Submit</button>
       <div id="formSuccess" class="success-message"></div>
     </form>
   </div>
@@ -137,7 +137,7 @@
 
 
   if (name.length < 3) {
-    document.getElementById('nameError').textContent = 'الاسم يجب أن يكون 3 أحرف على الأقل';
+    document.getElementById('nameError').textContent = 'username must be minimum of 3 characters';
     document.getElementById('nameError').style.display = 'block';
     valid = false;
   }
@@ -145,17 +145,17 @@
  
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
-    document.getElementById('emailError').textContent = 'من فضلك أدخل بريدًا إلكترونيًا صالحًا';
+    document.getElementById('emailError').textContent = 'please enter a valid email';
     document.getElementById('emailError').style.display = 'block';
     valid = false;
   } 
   if (message.length < 10) {
-    document.getElementById('messageError').textContent = 'يرجى كتابة رسالة لا تقل عن 10 أحرف';
+    document.getElementById('messageError').textContent = 'message should be more than 10 characters';
     document.getElementById('messageError').style.display = 'block';
     valid = false;
   }
   if (valid) {
-    document.getElementById('formSuccess').textContent = 'تم إرسال رسالتك بنجاح! شكرًا لتواصلك معنا.'
+    document.getElementById('formSuccess').textContent = 'Your message has been sent successfully!'
    
   }
 });
