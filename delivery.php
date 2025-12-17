@@ -1,0 +1,113 @@
+<?php
+// --- PHP backend: book data ---
+$books = [
+  ["name"=>"Clean Code","author"=>"Robert C. Martin","price"=>480.00,"deliveryDays"=>2],
+  ["name"=>"Introduction to Algorithms","author"=>"Cormen et al.","price"=>950.00,"deliveryDays"=>5],
+  ["name"=>"The Pragmatic Programmer","author"=>"Andrew Hunt, David Thomas","price"=>520.00,"deliveryDays"=>3],
+  ["name"=>"Design Patterns","author"=>"Gamma et al.","price"=>700.00,"deliveryDays"=>6]
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bookstore — Taken Books</title>
+  <style>
+    /* keep the same CSS from the last code */
+    :root { --bg:#0f1220; --panel:#171a2b; --text:#e7e9f9; --muted:#a9afc7; --accent:#6f8cff;
+            --success:#4cd97b; --warning:#f5a623; --danger:#ff5e6b; --border:#262b45; --shadow:rgba(0,0,0,0.25);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(135deg,#0c1020 0%,#121633 50%,#0f1220 100%);
+         color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px;}
+    .container{width:100%;max-width:980px;display:grid;grid-template-columns:1fr;gap:20px;}
+    header,.summary,.books{background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:0 8px 24px var(--shadow);padding:16px;}
+    header{padding:20px;box-shadow:0 10px 30px var(--shadow);}
+    .brand{display:flex;align-items:baseline;gap:12px;}
+    .brand h1{font-size:24px;letter-spacing:0.5px;}
+    .brand small{color:var(--muted);}
+    .summary h2,.books h2{font-size:18px;margin-bottom:10px;}
+    .summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+    .stat{background:#13162a;border:1px dashed var(--border);border-radius:12px;padding:12px;}
+    .stat .label{color:var(--muted);font-size:12px;margin-bottom:6px;display:block;}
+    .stat .value{font-size:16px;font-weight:600;}
+    .book{display:grid;grid-template-columns:1fr 120px 160px;align-items:center;gap:10px;padding:12px;border-radius:10px;border:1px solid var(--border);background:#141834;}
+    .book+.book{margin-top:10px;}
+    .title{display:flex;flex-direction:column;gap:4px;}
+    .title .name{font-weight:600;}
+    .title .author{color:var(--muted);font-size:13px;}
+    .price{font-variant-numeric:tabular-nums;}
+    .delivery{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;color:#0d1220;font-weight:600;}
+    .delivery.fast{background:var(--success);}
+    .delivery.normal{background:var(--accent);}
+    .delivery.slow{background:var(--warning);}
+    .footer{text-align:center;color:var(--muted);font-size:13px;}
+    @media(min-width:860px){.container{grid-template-columns:1.2fr 0.8fr;align-items:start;}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>Bookstore</h1>
+        <small>Taken books overview</small>
+      </div>
+    </header>
+    <section class="books">
+      <h2>Your taken books</h2>
+      <div id="book-list"></div>
+    </section>
+    <aside class="summary">
+      <h2>Order summary</h2>
+      <div class="summary-grid">
+        <div class="stat"><span class="label">Total items</span><span class="value" id="total-items">0</span></div>
+        <div class="stat"><span class="label">Total price</span><span class="value" id="total-price">EGP 0.00</span></div>
+        <div class="stat"><span class="label">Estimated delivery</span><span class="value" id="estimated-delivery">—</span></div>
+      </div>
+      <p class="footer">Delivery estimates consider stock status and carrier speed.</p>
+    </aside>
+  </div>
+
+  <!-- jQuery + JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // PHP injects JSON into JS
+    const takenBooks = <?php echo json_encode($books); ?>;
+
+    function deliveryClass(days){ if(days<=2) return "fast"; if(days<=4) return "normal"; return "slow"; }
+    function egp(amount){ return EGP ${amount.toFixed(2)}; }
+
+    function renderBooks(){
+      const list=document.getElementById("book-list"); list.innerHTML="";
+      takenBooks.forEach((book)=>{
+        const row=document.createElement("div"); row.className="book";
+        const title=document.createElement("div"); title.className="title";
+        const nameEl=document.createElement("span"); nameEl.className="name"; nameEl.textContent=book.name;
+        const authorEl=document.createElement("span"); authorEl.className="author"; authorEl.textContent=book.author;
+        title.appendChild(nameEl); title.appendChild(authorEl);
+        const price=document.createElement("div"); price.className="price"; price.textContent=egp(book.price);
+        const delivery=document.createElement("div"); delivery.className=delivery ${deliveryClass(book.deliveryDays)};
+        delivery.textContent=${book.deliveryDays} day(s);
+        row.appendChild(title); row.appendChild(price); row.appendChild(delivery); list.appendChild(row);
+      });
+    }
+
+    function updateSummary(){
+      const totalItems=takenBooks.length;
+      const totalPrice=takenBooks.reduce((sum,b)=>sum+b.price,0);
+      const maxDelivery=takenBooks.reduce((max,b)=>Math.max(max,b.deliveryDays),0);
+      document.getElementById("total-items").textContent=totalItems;
+      document.getElementById("total-price").textContent=egp(totalPrice);
+      document.getElementById("estimated-delivery").textContent=${maxDelivery} day(s);
+    }
+
+    function init(){
+      renderBooks(); updateSummary();
+      // jQuery animations
+      $("#book-list .book").hide().each(function(i){ $(this).delay(200*i).fadeIn(600); });
+      $(".summary").css("opacity",0).animate({opacity:1,marginTop:"20px"},1000);
+      $("header").hide().slideDown(800);
+    }
+    $(document).ready(init);
+  </script>
+</body>
+</html>
